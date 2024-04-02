@@ -1,5 +1,22 @@
 const botoes = document.querySelectorAll('.botao');
-const textos = document.querySelectorAll('.aba-conteudo');34
+const textos = document.querySelectorAll('.aba-conteudo');
+
+
+
+const contadores = document.querySelectorAll(".contador")
+
+const tempoAtual = new Date(); //retorna a data atual do computador
+const tempoObjetivo1 = new Date("2024-11-00T00:00:00");
+const tempoObjetivo2 = new Date("2024-08-00T00:00:00");
+const tempoObjetivo3 = new Date("2024-11-00T00:00:00");
+const tempoObjetivo4 = new Date("2024-06-10T00:00:00");
+
+const tempos = [tempoObjetivo1, tempoObjetivo2, tempoObjetivo3, tempoObjetivo4];
+
+for (let i= 0; i<tempos.length; i++){
+    contadores[i].textContent = calculaTempo(tempos[i])
+}
+
 
 for(let i=0; i<botoes.length; i++){
     botoes[i].onclick = function(){
@@ -14,9 +31,19 @@ for(let i=0; i<botoes.length; i++){
     }
 }
 
-const contadores = document.querySelectorAll(".contador")
+function calculaTempo (tempoObjetivo) {
+    let tempoAtual= new Date();
+    let tempoFinal= tempoObjetivo - tempoAtual;
 
-const tempoAtual = new Date(); //retorna a data atual do computador
-const tempoObjetivo1 = new Date("2024-04-04T00:00:00");
+    let segundos = Math.floor(tempoFinal/1000);
+    let minutos = Math.floor(segundos/60);
+    let horas = Math.floor(minutos/60);
+    let dias = Math.floor(horas/24);
 
-contadores[0].textContent = tempoObjetivo1 - tempoAtual
+    segundos %= 60;
+    minutos %= 60;
+    horas %= 24;
+
+    return dias + " Dias " + horas + " Horas " + minutos + " Minutos " + segundos + " Segundos "
+
+}
